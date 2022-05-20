@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh "ssh$(ngrok-bot.sh)"
+ssh "ssh$($(dirname $(realpath $0))/ngrok-bot.sh)"
