@@ -1,0 +1,10 @@
+[Unit]
+Description=SSH Tunnel watcher
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/%N/ngrok-start.sh
+
+[Install]
+WantedBy=default.target
