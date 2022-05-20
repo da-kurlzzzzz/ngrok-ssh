@@ -1,8 +1,7 @@
 #!/bin/bash
 
-LOGFILE="$HOME/logs/ngrok-start.log"
-ngrok tcp --log stdout 22 > $LOGFILE &
-while ! grep "started tunnel" $LOGFILE
+ngrok tcp --log stdout 22 | tee >(
+while ! grep "started tunnel" -m 1
 do
     :
-done | sed -E 's#.*url=tcp://(.*)#://kevin@\1#' | xargs ngrok-bot.sh
+done | sed -E 's#.*url=tcp://(.*)#://kevin@\1#' | xargs $(dirname $(realpath $0))/ngrok-bot.sh)
